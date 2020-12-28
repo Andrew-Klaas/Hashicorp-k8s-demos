@@ -2,7 +2,7 @@
 set -v
 
 #REQUIRES HELM 3
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
@@ -47,6 +47,6 @@ consul config write consul/service-intentions.hcl
 #kubectl apply -f learn-consul-k8s-hashicups/hashicups
 
 echo ""
-echo "Vault Transit App"
-echo "use the following command to get your demo IP, port is 5000"
-echo "$ kubectl get svc k8s-transit-app"
+echo "vault-go-demo"
+echo "use the following command to get your demo IP, port is 9090"
+echo "$ kubectl get svc vault-go-demo"
