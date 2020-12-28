@@ -100,6 +100,9 @@ path "lob_a/workshop/kv/*" {
 path "*" {
     capabilities = ["read", "list", "create", "update", "delete"]
 }
+path "transit/*" {
+    capabilities = ["read", "list", "create", "update", "delete"]
+}
 EOF
 vault policy write transit-app-example transit-app-example.policy
 
@@ -138,6 +141,12 @@ vault write auth/kubernetes/role/go-movies-app \
         policies=transit-app-example \
         ttl=72h
 
+vault write auth/kubernetes/role/vault_go_demo \
+        bound_service_account_names=vault-auth \
+        bound_service_account_namespaces=default \
+        policies=transit-app-example \
+        ttl=72h
+
 #transit setup
 vault secrets enable transit
 vault write -f transit/keys/my-key
@@ -147,8 +156,8 @@ vault secrets enable database
 
 vault write database/config/my-postgresql-database \
 plugin_name=postgresql-database-plugin \
-allowed_roles="my-role" \
-connection_url="postgresql://{{username}}:{{password}}@pq-postgresql-default.service.consul:5432/movies?sslmode=disable" \
+allowed_roles="my-role, vault_go_demo" \
+connection_url="postgresql://{{username}}:{{password}}@pq-postgresql-default.service.consul:5432/vault_go_demo?sslmode=disable" \
 username="postgres" \
 password="password"
 
@@ -158,5 +167,13 @@ creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}'
 ALTER USER \"{{name}}\" WITH SUPERUSER;" \
 default_ttl="1h" \
 max_ttl="24h"
+
+vault write database/roles/vault_go_demo \
+db_name=my-postgresql-database \
+creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; \
+ALTER USER \"{{name}}\" WITH SUPERUSER;" \
+default_ttl="1h" \
+max_ttl="24h"
+
 
 vault read database/creds/my-role

@@ -141,7 +141,7 @@ postgresqlPassword: "password"
 ## Create a database
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md#creating-a-database-on-first-run
 ##
-postgresqlDatabase: movies
+postgresqlDatabase: vault_go_demo
 
 ## PostgreSQL data dir
 ## ref: https://github.com/bitnami/bitnami-docker-postgresql/blob/master/README.md
