@@ -30,12 +30,6 @@ cd demo
 ```
 cat that script if you want to see how to deploy each of the above by hand/manually.
 
-
-## Teardown
-```bash
-demo/cleanup.sh
-```
-
 ## UI
 Refresh your browser tab when they initally open up. They are started by nohup commands using kubectl port-forward. see demo/vault/vault.sh and demo/consul/consul.sh
 
@@ -60,3 +54,14 @@ Use the following command to access the application. Use port 9090.
 ```bash
 $  kubectl get svc vault-go-demo
 ```
+
+## Cleanup
+Use the cleaup.sh script under demo/ to delete all pods, helm deploys, and PVCs.
+
+NOTE: if you are re-running the deploy, make sure you kill any port-forward Consul/Vault procceses left over from the first execution. Use the "ps" command on your laptop to check. 
+
+```bash
+cd demo/
+./cleanup.sh
+```
+
