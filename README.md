@@ -1,5 +1,5 @@
-# k8s consul/vault/transit-app/mariadb demo
-Software requirements (on your laptop):
+# HashiCorp Vault/Consul/K8s - Encryption Application Demo
+Software requirements (on your laptop). These can be easily installed with brew on mac. https://www.hashicorp.com/blog/announcing-hashicorp-homebrew-tap
 
 ```git curl jq kubectl(v1.17 or greater) helm3 consul vault```
 
@@ -23,7 +23,7 @@ terraform apply --auto-approve;
 gcloud container clusters get-credentials your-cluster-name --zone us-central1-c --project your-project
 ```
 
-4. Deploy Consul/Vault/Mariadb/Python-transit-app. This takes a minute or two as there are a bunch of sleeps setup in the script.
+4. Deploy Consul/Vault/Mariadb/Python-transit-app. This takes a minute or two as there are a bunch of sleeps setup in the script. This script is running on your laptop and connecting out to the Kubernetes cluster! That is why we need the software requirements from above. 
 ```bash
 cd demo
 ./full_stack_deploy.sh
@@ -38,6 +38,7 @@ demo/cleanup.sh
 
 ## UI
 Refresh your browser tab when they initally open up. They are started by nohup commands using kubectl port-forward. see demo/vault/vault.sh and demo/consul/consul.sh
+
 ```bash
 #Consul
 http://localhost:8500
@@ -46,26 +47,16 @@ http://localhost:8500
 http://localhost:8200
 ```
 
+You may need to re-run the nohup commands to reset port-forwarding to access the Vault and Consul services.
+
+```bash
+nohup kubectl port-forward service/consul-consul-ui 8500:80 --pod-running-timeout=10m &
+nohup kubectl port-forward service/vault-ui 8200:8200 --pod-running-timeout=10m &
+
+```
+
 ## Encryption as a service demo
-Use the following command to access the application. Use port 5000.
+Use the following command to access the application. Use port 9090.
 ```bash
-$ kubectl get svc k8s-transit-app
-NAME              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-k8s-transit-app   LoadBalancer   10.15.250.236   <pending>     5000:30549/TCP   11s
-
+$  kubectl get svc vault-go-demo
 ```
-
-## Go Movies App Demo 
-Blog post: [Medium.com link]
-Use the following command to access the application. Use port 8080.
-```bash
-$ kubectl get svc go-movies-app
-NAME              TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-go-movies-app   LoadBalancer   10.15.250.237   <pending>     8080:30539/TCP   11s
-
-```
-
-
-
-## Consul Ingress Gateway
-The ingress gateway can be used to access either the k8s-transit-app (Vault features) or go-movies-app (Consul L7 features)
