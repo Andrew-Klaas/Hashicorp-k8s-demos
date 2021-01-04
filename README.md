@@ -19,6 +19,9 @@ Vault v1.6.0 (7ce0bd9691998e0443bc77e98b1e2a4ab1e965d4)
 Consul v1.9.0-beta1
 ```
 
+You will also need the gcloud CLI tool for authentication:
+https://cloud.google.com/sdk/docs/quickstart#mac
+
 ## Setup
 0. Set your GCP creds. Use the following link to setup gcloud for authenticating the provider: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#configuring-the-provider
 
