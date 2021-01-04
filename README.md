@@ -3,6 +3,22 @@ Software requirements (on your laptop). These can be easily installed with brew 
 
 ```git curl jq kubectl(v1.17 or greater) helm3 consul vault```
 
+At the time of writing this readme I have the following versions installed
+
+```
+➜  Hashicorp-k8s-demos git:(master) jq -V
+jq-1.5
+➜  Hashicorp-k8s-demos git:(master) helm version
+version.BuildInfo{Version:"v3.4.2", GitCommit:"23dd3af5e19a02d4f4baa5b2f242645a1a3af629", GitTreeState:"dirty", GoVersion:"go1.15.5"}
+➜  Hashicorp-k8s-demos git:(master) kubectl version
+Client Version: version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"52c56ce7a8272c798dbc29846288d7cd9fbae032", GitTreeState:"clean", BuildDate:"2020-04-16T23:35:15Z", GoVersion:"go1.14.2", Compiler:"gc", Platform:"darwin/amd64"}
+Server Version: version.Info{Major:"1", Minor:"16+", GitVersion:"v1.16.15-gke.4901", GitCommit:"7ed5ddc0e67cb68296994f0b754cec45450d6a64", GitTreeState:"clean", BuildDate:"2020-11-06T18:22:22Z", GoVersion:"go1.13.15b4", Compiler:"gc", Platform:"linux/amd64"}
+➜  Hashicorp-k8s-demos git:(master) vault version
+Vault v1.6.0 (7ce0bd9691998e0443bc77e98b1e2a4ab1e965d4)
+➜  Hashicorp-k8s-demos git:(master) consul version
+Consul v1.9.0-beta1
+```
+
 ## Setup
 0. Set your GCP creds. Use the following link to setup gcloud for authenticating the provider: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#configuring-the-provider
 
