@@ -1,11 +1,18 @@
 #!/bin/bash
 set -v
 
+
 nohup kubectl port-forward service/vault-ui 8200:8200 --pod-running-timeout=10m &
 nohup kubectl port-forward service/consul-consul-ui 8500:80 --pod-running-timeout=10m &
 
+sleep 5s
+
+vault status
+
+
 export VAULT_ADDR=http://127.0.0.1:8200
 export CONSUL_ADDR=http://127.0.0.1:8500
+
 
 cget() { curl -sf "http://127.0.0.1:8500/v1/kv/service/vault/$1?raw"; }
 

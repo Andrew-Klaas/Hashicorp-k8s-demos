@@ -236,7 +236,8 @@ server:
   # In order to expose the service, use the route section below
   ingress:
     enabled: true
-    labels: {}
+    labels:
+      app: vault
       # traffic: external
     annotations: |
       consul.hashicorp.com/connect-inject: 'true'
@@ -654,7 +655,7 @@ ui:
   publishNotReadyAddresses: true
   # The service should only contain selectors for active Vault pod
   activeVaultPodOnly: false
-  serviceType: "LoadBalancer"
+  serviceType: "ClusterIP"
   serviceNodePort: null
   externalPort: 8200
 
