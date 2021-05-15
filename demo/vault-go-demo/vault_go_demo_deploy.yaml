@@ -22,9 +22,8 @@ spec:
     metadata: 
       annotations:
         consul.hashicorp.com/connect-inject: "true"
-        consul.hashicorp.com/connect-service-protocol: "http"
         consul.hashicorp.com/service-tags: "v1"
-        consul.hashicorp.com/connect-service-upstreams: "vault:8200, pq-postgresql:5432"
+        consul.hashicorp.com/connect-service-upstreams: "vault-ui:8200, pq-postgresql-headless:5432"
       name: vault-go-demo
       labels:
         app: vault-go-demo

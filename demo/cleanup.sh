@@ -13,3 +13,4 @@ kubectl delete pvc data-default-consul-consul-server-1
 kubectl delete pvc data-default-consul-consul-server-2
 kubectl delete pvc data-pq-postgresql-0
 kubectl delete pvc data-vault-0
+

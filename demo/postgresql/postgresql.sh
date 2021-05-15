@@ -5,3 +5,5 @@ helm install pq \
     bitnami/postgresql -f values.yaml
 
 
+kubectl apply -f test.yaml
+

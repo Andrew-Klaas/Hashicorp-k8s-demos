@@ -1,7 +1,7 @@
 #!/bin/bash
 set -v
 
-helm install vault hashicorp/vault -f values.yaml  --version=0.6.0
+helm install vault hashicorp/vault -f values.yaml 
 
 sleep 60s
 

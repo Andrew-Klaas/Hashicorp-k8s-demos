@@ -1,7 +1,7 @@
 #!/bin/bash
 set -v
 
-nohup kubectl port-forward service/vault 8200:8200 --pod-running-timeout=10m &
+nohup kubectl port-forward service/vault-ui 8200:8200 --pod-running-timeout=10m &
 nohup kubectl port-forward service/consul-consul-ui 8500:80 --pod-running-timeout=10m &
 
 export VAULT_ADDR=http://127.0.0.1:8200
@@ -135,7 +135,7 @@ vault secrets enable database
 vault write database/config/my-postgresql-database \
 plugin_name=postgresql-database-plugin \
 allowed_roles="my-role, vault_go_demo" \
-connection_url="postgresql://{{username}}:{{password}}@pq-postgresql-default.service.consul:5432/vault_go_demo?sslmode=disable" \
+connection_url="postgresql://{{username}}:{{password}}@pq-postgresql-headless.service.consul:5432/vault_go_demo?sslmode=disable" \
 username="postgres" \
 password="password"
 

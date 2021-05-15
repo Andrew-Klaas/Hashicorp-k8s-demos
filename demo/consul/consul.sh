@@ -2,7 +2,8 @@
 set -v
 
 echo "Installing Consul from Helm chart repo..."
-helm install consul hashicorp/consul -f values.yaml 
+# helm install consul hashicorp/consul -f values.yaml 
+helm install consul hashicorp/consul -f values.yaml --version v0.32.0-beta2
 
 kubectl wait --timeout=180s --for=condition=Ready $(kubectl get pod --selector=app=consul -o name)
 sleep 1s

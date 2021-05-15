@@ -1,0 +1,17 @@
+# config.yaml
+
+# Configure global settings in this section.
+global:
+  name: consul
+server:
+  enabled: true
+  replicas: 3
+client:
+  enabled: true
+ui:
+  enabled: true
+connectInject:
+  enabled: true
+controller:
+  enabled: true
+
