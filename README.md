@@ -24,7 +24,9 @@ https://cloud.google.com/sdk/docs/quickstart#mac
 
 ## Setup
 0. Set your GCP creds. Use the following link to setup gcloud for authenticating the provider: https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#configuring-the-provider
-
+```bash
+gcloud auth application-default login
+```
 
 1. Fill out terraform.tfvars with your values
 
@@ -33,7 +35,7 @@ https://cloud.google.com/sdk/docs/quickstart#mac
 terraform apply --auto-approve;
 ```
 
-3. Copy the command for  "connecting" to your k8s cluster from the terraform output.
+3. Copy the command for "connecting" to your k8s cluster from the terraform output, then run it.
 ```bash
 gcloud container clusters get-credentials your-cluster-name --zone us-central1-c --project your-project
 ```
